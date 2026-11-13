@@ -1,5 +1,19 @@
+import { isValidNote } from "../../../../modules/music/domain/validators/note-validator";
+
 export default class InstrumentString {
-    constructor(public readonly order: number, protected tuning: string) { }
+    constructor(public readonly order: number, public readonly tuning: string) {
+        this.validate()
+    }
+
+    private validate() {
+        if (this.order <= 0 || !Number.isInteger(this.order)) {
+            throw new Error("Ordem da corda inserida é invalida.")
+        }
+
+        if (!isValidNote(this.tuning)) throw new Error("Afinação inválida inserida.")
+
+        return
+    }
 
     /**
      * Regras:
