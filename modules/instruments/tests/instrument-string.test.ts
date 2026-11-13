@@ -18,4 +18,12 @@ describe("InstrumentString", () => {
     test("should not create a new InstrumentString when order is a decimal", () => {
         expect(() => new InstrumentString(3.4, validTune))
     })
+
+    test("should not create a string when the tune don't have an octave", () => {
+        expect(() => new InstrumentString(4, "D")).toThrow("Afinação inválida inserida.")
+    })
+
+    test('should not create a string with an invalid tune', () => { 
+        expect(()=> new InstrumentString(4, "Z"))
+     })
 })
